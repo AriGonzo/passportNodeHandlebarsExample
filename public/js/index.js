@@ -1,7 +1,6 @@
 $('#submitUser').on('click', function(e){
 	var userObj = createUserObj()
 	var routeParam = $(e.currentTarget).attr('data-type');
-
 	postUser(routeParam, userObj);
 });
 
@@ -14,9 +13,8 @@ function createUserObj(){
 }
 
 function postUser(routeParam, userObj){
-	$.post('/'+routeParam, userObj, function(){
-		$('#username').val("");
-		$('#password').val("");
+	$.post('/'+routeParam, userObj, function(data){
+		window.location = data.redirect;
 	});
 }
 

@@ -19,6 +19,15 @@ function connectToDB(){
 
 module.exports.connectToDB = connectToDB;
 
-function addUserToDB(){
-	
+function addUserToDB(userObj, callback){
+	connection.query('INSERT INTO tblUsers SET ?', userObj, function(err, results){
+		if (err) return callback(false, err)
+		callback(true. null)
+	});
+}
+
+module.exports.addUserToDB = addUserToDB;
+
+function findUser(){
+
 }

@@ -1,4 +1,4 @@
-var orm = require('../db/orm.js');
+var UserModel = require('../models/User.js');
 var passport = require('passport');
 
 module.exports = function(app){
@@ -18,11 +18,19 @@ module.exports = function(app){
 	});
 
 	app.post('/signin', function(req, res){
-		res.sendStatus(200)
+		
 	});
 
 	app.post('/signup', function(req, res){
-		res.sendStatus(200)
+		var user = new UserModel(req.body);
+		UserModel.saveUser(user, function(status){
+			if(!status) {
+				res.json({redirect: '/signup'})
+				return false
+			}
+			res.json({redirect: '/'});
+		});
+		
 	});
 
 };
