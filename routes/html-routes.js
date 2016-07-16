@@ -25,6 +25,8 @@ passport.deserializeUser(function(user, done) {
 
 module.exports = function(app){
 
+	//GETs
+
 	app.get('/', function(req, res){
 		res.render('index', {
 			welcomeText: "Sign In",
@@ -55,6 +57,12 @@ module.exports = function(app){
 	  res.redirect('/');
 	});
 
+	//POSTs
+
+	app.post('/signin', passport.authenticate('local',{failureRedirect:'/', failureFlash:'Wrong Username or Password'}), function(req, res){
+		res.redirect('/authenticated');
+	});
+
 	app.post('/signup', function(req, res){
 		var user = new UserModel(req.body);
 		UserModel.saveUser(user, function(status){
@@ -66,7 +74,4 @@ module.exports = function(app){
 		});
 	});
 
-	app.post('/signin', passport.authenticate('local',{failureRedirect:'/', failureFlash:'Wrong Username or Password'}), function(req, res){
-		res.redirect('/authenticated');
-	});
 };
