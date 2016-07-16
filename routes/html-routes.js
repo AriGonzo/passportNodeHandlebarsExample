@@ -31,14 +31,20 @@ module.exports = function(app){
 		res.render('index', {
 			welcomeText: "Sign In",
 			actionBtn: 'signin',
-			message: req.flash('error')[0]
+			message: req.flash('error')[0],
+			otherAction: "Signup"
 		});
+	});
+
+	app.get('/signin', function(req, res){
+		res.redirect('/')
 	});
 
 	app.get('/signup', function(req, res){
 		res.render('index', {
 			welcomeText: "Sign Up",
-			actionBtn: 'signup'
+			actionBtn: 'signup',
+			otherAction: "Signin"
 		});
 	});
 
