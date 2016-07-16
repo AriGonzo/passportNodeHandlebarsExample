@@ -2,6 +2,7 @@ var express = require('express');
 var app = express();
 var exphbs = require('express-handlebars');
 var bodyParser = require('body-parser');
+var orm = require('./db/orm.js');
 var PORT = 8080;
 
 //Handlebars-------------------------------------------------------
@@ -22,6 +23,8 @@ app.use(express.static('public'));
 require('./routes/api-routes.js')(app);
 require('./routes/html-routes.js')(app);
 //-----------------------------------------------------------------
+
+orm.connectToDB();
 
 app.listen(PORT, function(){
 	console.log('listening on port', PORT)
