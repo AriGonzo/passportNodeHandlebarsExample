@@ -28,7 +28,8 @@ module.exports = function(app){
 	app.get('/', function(req, res){
 		res.render('index', {
 			welcomeText: "Sign In",
-			actionBtn: 'signin'
+			actionBtn: 'signin',
+			message: req.flash('error')[0]
 		});
 	});
 
@@ -68,5 +69,4 @@ module.exports = function(app){
 	app.post('/signin', passport.authenticate('local',{failureRedirect:'/', failureFlash:'Wrong Username or Password'}), function(req, res){
 		res.json({redirect: '/authenticated'})
 	});
-
 };

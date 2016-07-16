@@ -13,8 +13,13 @@ function createUserObj(){
 }
 
 function postUser(routeParam, userObj){
-	$.post('/'+routeParam, userObj, function(data){
-		window.location = data.redirect;
-	});
+	$.post('/'+routeParam, userObj)
+	.done(function(data){
+		if (data.redirect) {
+			window.location = data.redirect;
+		} else {
+			alert("Incorrect Username/Password Combo")
+		}
+	})
 }
 
