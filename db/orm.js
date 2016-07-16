@@ -28,6 +28,9 @@ function addUserToDB(userObj, callback){
 
 module.exports.addUserToDB = addUserToDB;
 
-function findUser(){
-
+function findUser(username, callback){
+	connection.query('SELECT * FROM tblUsers WHERE ?', {username: username}, function(err, user){
+		callback(err, user)
+	})
 }
+module.exports.findUser = findUser;
