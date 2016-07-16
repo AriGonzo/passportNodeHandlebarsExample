@@ -1,0 +1,1 @@
+There's been some confusion on how to use passport in the Tues/Thurs class for UCF Coding Bootcamp so I decided to throw together a quick login using Node, Passport, Express, MySQL, and Handlebars
