@@ -59,14 +59,14 @@ module.exports = function(app){
 		var user = new UserModel(req.body);
 		UserModel.saveUser(user, function(status){
 			if(!status) {
-				res.json({redirect: '/signup'})
+				res.redirect('/signup')
 				return false
 			}
-			res.json({redirect: '/'});
+			res.redirect('/');
 		});
 	});
 
 	app.post('/signin', passport.authenticate('local',{failureRedirect:'/', failureFlash:'Wrong Username or Password'}), function(req, res){
-		res.json({redirect: '/authenticated'})
+		res.redirect('/authenticated');
 	});
 };
